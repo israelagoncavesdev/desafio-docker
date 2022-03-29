@@ -1,0 +1,18 @@
+FROM golang:alpine3.15 as builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod download && go mod verify
+
+COPY . .
+
+RUN go build -o /hello
+
+FROM scratch
+
+WORKDIR /
+COPY --from=builder /hello  /hello
+
+CMD [ "/hello" ]
