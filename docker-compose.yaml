@@ -26,6 +26,7 @@ services:
       - desafio2-network
     volumes: 
       - ./node:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on: 
       - db
   
